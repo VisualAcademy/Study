@@ -1,5 +1,5 @@
 ﻿int[] array = { 3, 9, 5, 13, 12, 30 };
-var query = Filter(array, delegate (int i) { return i > 5; });
+var query = Filter(array, i => i > 5);
 foreach (int value in query) { WriteLine(value); }
 
 IEnumerable<T> Filter<T>(IEnumerable<T> src, Predicate<T> p)
