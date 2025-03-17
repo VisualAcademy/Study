@@ -1,5 +1,5 @@
 ﻿int[] array = { 3, 9, 5, 13, 12, 30 };
-IEnumerable<int> query = Filter<int>(array, GreaterThanFive);
+var query = Filter(array, GreaterThanFive);
 foreach (int value in query) { WriteLine(value); }
 
 bool GreaterThanFive(int i) { return i > 5; }
