@@ -6,9 +6,7 @@ bool GreaterThanFive(int i) { return i > 5; }
 
 IEnumerable<T> Filter<T>(IEnumerable<T> src, Predicate<T> p)
 {
-    List<T> dst = new List<T>();
-    foreach (T value in src) { if (p(value)) dst.Add(value); }
-    return dst.ToArray();
+    foreach (T value in src) { if (p(value)) yield return value; } // C# 2.0 yield
 }
 
 delegate bool Predicate<T>(T i);
