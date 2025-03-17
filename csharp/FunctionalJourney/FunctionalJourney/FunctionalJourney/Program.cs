@@ -1,14 +1,14 @@
 ﻿int[] array = { 3, 9, 5, 13, 12, 30 };
-IEnumerable<int> query = Filter(array, GreaterThanFive);
+IEnumerable<int> query = Filter<int>(array, GreaterThanFive);
 foreach (int value in query) { WriteLine(value); }
 
 bool GreaterThanFive(int i) { return i > 5; }
 
-IEnumerable<int> Filter(IEnumerable<int> src, Predicate p)
+IEnumerable<T> Filter<T>(IEnumerable<T> src, Predicate<T> p)
 {
-    List<int> dst = new List<int>();
-    foreach (int value in src) { if (p(value)) dst.Add(value); }
+    List<T> dst = new List<T>();
+    foreach (T value in src) { if (p(value)) dst.Add(value); }
     return dst.ToArray();
 }
 
-delegate bool Predicate(int i);
+delegate bool Predicate<T>(T i);
