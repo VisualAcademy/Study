@@ -1,25 +1,22 @@
 ﻿int[] array = { 3, 9, 5, 13, 12, 30 };
 
-var input = new QueryInput { Data = array };
+// C# 11.0: List Patterns 사용
+var query = Filter(array, i => i > 5);
+foreach (int value in query) { Console.WriteLine(value); }
 
-var modifiedInput = input with { Data = array.Where(i => i % 2 == 0).ToArray() };
-
-await ExecuteQueryAsync(modifiedInput);
-
-async Task ExecuteQueryAsync(object input, bool printMessage = true) =>
-    await (input switch
-    {
-        QueryInput { Data: int[] array } when printMessage
-            => Task.WhenAll(array.AsQueryable()
-                .Where(i => i > 5 && i % 2 == 0)
-                .Select(i => Task.Run(() => WriteLine(i)))),
-
-        QueryInput => Task.CompletedTask,
-
-        _ => throw new ArgumentException("Invalid input type")
-    });
-
-record QueryInput
+IEnumerable<T> Filter<T>(IEnumerable<T> src, Predicate<T> p)
 {
-    public int[] Data { get; init; } = Array.Empty<int>();
+    foreach (T value in src)
+    {
+        if (p(value))
+            yield return value;
+    }
 }
+
+// C# 11.0: List Pattern 적용
+bool ContainsPattern(int[] numbers)
+{
+    return numbers is [3, _, 5, .., 30]; // 3과 5가 특정 위치에 있고, 마지막이 30이면 true
+}
+
+Console.WriteLine(ContainsPattern(array)); // true
