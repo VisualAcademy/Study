@@ -1,4 +1,5 @@
-﻿int[] array = { 3, 9, 5, 13, 12, 30 };
+﻿// C# 10 Global Usings
+int[] array = { 3, 9, 5, 13, 12, 30 };
 int[] query = Filter(array, GreaterThanFive);
 foreach (int value in query) { WriteLine(value); }
 
