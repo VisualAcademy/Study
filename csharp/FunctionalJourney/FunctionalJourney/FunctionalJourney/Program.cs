@@ -1,4 +1,4 @@
-﻿// https://youtu.be/abPa5AagcwY
+﻿// C# 6.0
 using System;
 using System.Collections;
 using static System.Console;
