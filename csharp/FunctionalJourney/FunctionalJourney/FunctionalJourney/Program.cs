@@ -1,4 +1,5 @@
-﻿int[] array = { 3, 9, 5, 13, 12, 30 };
+﻿// C# 3.0 var keyword
+int[] array = { 3, 9, 5, 13, 12, 30 };
 var query = Filter(array, GreaterThanFive);
 foreach (int value in query) { WriteLine(value); }
 
